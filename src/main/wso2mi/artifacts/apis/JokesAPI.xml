@@ -1,0 +1,18 @@
+
+<api xmlns="http://ws.apache.org/ns/synapse" name="JokesAPI" context="/jokes">
+    <resource methods="POST" uri-template="/email">
+        <inSequence>
+            <log level="custom">
+				<property name="message" expression="json-eval($)" />
+			</log>
+            <!-- Extract
+			and store the email address from the payload -->
+			<property name="emailAddress" expression="json-eval($.email)" scope="default"
+				type="STRING" />
+				<datamapper config="gov:/datamapper/.dmc" inputSchema="gov:/datamapper/_inputSchema.json"
+				inputType="JSON" outputSchema="gov:/datamapper/_outputSchema.json" outputType="JSON"
+				xsltStyleSheet="" />
+			<respond />
+			</inSequence>
+    </resource>
+</api>

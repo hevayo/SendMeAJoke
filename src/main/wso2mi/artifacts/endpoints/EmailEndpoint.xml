@@ -1,0 +1,6 @@
+
+<endpoint xmlns="http://ws.apache.org/ns/synapse" name="EmailEndpoint">
+    <http uri-template="http://example.com/api/sendEmail?email={uri.var.emailAddress}" method="post">
+        <property name="uri.var.emailAddress" expression="get-property('emailAddress')"/>
+    </http>
+</endpoint>
